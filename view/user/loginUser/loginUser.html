@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UTeM EcoHarvest</title>
+    <link rel="stylesheet" href="../../../styles/loginUser.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <img class="header-image" src="../../../assets/images/logo.jpeg" alt="../../../assets/images/logo daun">
+            <h3>UTeM EcoHarvest</h3>
+        </div>
+        <nav class="nav-container">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#allProgram">All Program</a></li>
+                <li><a href="#community">Community</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="login-box">
+            <h1>UTeM EcoHarvest</h1>
+            <form>
+                <label for="matric-number">Matric Number</label>
+                <input type="text" id="matric-number" name="matric-number" placeholder="Enter Your Matric Number">
+                
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter Your Password">
+                
+                <a href="#">Forgot Password?</a>
+                
+                <button type="submit">Login</button>
+                
+                <p>Does not have an account yet? <a href="../signUpUser/signupUser.html">Sign Up Now</a></p>
+            </form>
+        </div>
+    </main>
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+               
+                <p>Universiti Teknikal Malaysia Melaka,
+                     <br>76100, Hang Tuah Jaya, <br> Durian Tunggal,<br> Melaka.</p>
+
+            </div>
+           
+            <div class="footer-row">
+                <div class="footer-links">
+                    <div class="about">
+                        <h3>About</h3>
+                        <a href="#">FAQs</a>
+                    </div>
+                    <div class="community">
+                        <h3>Community</h3>
+                        <a href="#">Vlogs</a>
+                        <a href="#">Events</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-contact">
+                <h3>Ask a Question</h3>
+                <a href="#" onclick="sendMail()">Send an Email</a>
+            </div>
+            
+            
+        </div>
+    </footer>
+    <script src="loginJS.js"></script> <!-- Reference to the external JavaScript file -->
+
+</body>
+</html>

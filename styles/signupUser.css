@@ -1,0 +1,244 @@
+@import url('https://fonts.googleapis.com/css2?family=Aclonica&display=swap');
+
+body {
+    font-family: Arial, sans-serif;
+    background: url('../assets/images/background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+}
+
+header, footer {
+    background-color: black; 
+    color: white; 
+    padding: 5px 5px;
+    width: 100%;
+}
+
+/* Add these styles to center the nav-container */
+header {
+    position: sticky;
+    top: 0;
+    display: flex;
+    align-items: center;
+    /*justify-content: space-between; /* Add this line */
+}
+
+
+
+footer {
+    position: sticky;
+    bottom: 0;
+}
+
+.nav-container {
+    margin-left: auto;
+    margin-right: 570px; /* Add this line */
+}
+/* Apply the Aclonica font to the header text */
+header h1 {
+    font-family: 'Aclonica', sans-serif;
+}
+/* Apply the Aclonica font to the header text */
+ header h3 {
+    text-align: left;
+    font-family: 'Aclonica', sans-serif;
+    margin: 0; /* Remove default margin */
+    padding: 10px 0; /* Add padding as needed */
+    position: relative;
+    left: 37px;
+    z-index: 1;
+}
+.header-image {
+    position: absolute;
+    left: 0; /* Position the image on the left */
+    top: 42%; /* Adjust the top position as needed */
+    transform: translateY(-50%);
+    width: 40px; /* Set the width of the image */
+    height: auto; /* Maintain aspect ratio */
+    z-index: 0; /* Ensure the image stays behind the text */
+}
+
+header h1, footer p {
+    margin: 0;
+}
+
+.nav-container{
+   left: 100px; 
+}
+header nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 10px 0 0 0;
+    display: flex;
+    justify-content: center;
+}
+
+header nav ul li {
+    margin: 0 15px;
+}
+header nav ul li a {
+    font-family: 'manrope', sans-serif; 
+    color: white; 
+    text-decoration: none;
+    font-weight: lighter;
+}
+
+
+header nav ul li a:hover {
+    text-decoration: underline;
+}
+
+.container {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 15px; 
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    max-width: 350px; 
+    width: 100%;
+    margin: 20px auto; 
+}
+
+.form-container {
+    text-align: center;
+    padding: 10px 0; 
+}
+
+.toggle {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+.toggle button {
+    background-color: lightgray;
+    border: none;
+    padding: 5px 10px; 
+    cursor: pointer;
+    outline: none;
+}
+
+.toggle button.active {
+    background-color: #007BFF;
+    color: white;
+}
+
+form h2 {
+    margin-bottom: 15px;
+}
+
+.input-group {
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 3px;
+}
+
+.input-group.row {
+    display: flex;
+}
+
+.input-group.row .input-group {
+    margin-right: 10px; 
+}
+
+.input-group.row input {
+    flex: 1; 
+}
+
+.input-group input {
+    width: calc(100% - 10px);
+    padding: 10px;
+    margin: 0;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+}
+
+.password-container {
+    position: relative; /* Ensure the z-index works */
+}
+
+.password-info-icon, .toggle-password {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: #007BFF;
+}
+
+.password-info-icon {
+    right: 30px;
+}
+
+.toggle-password {
+    right: 10px;
+}
+
+.password-tooltip {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: 30px;
+    background-color: white;
+    color: black;
+    border: 1px solid #ccc;
+    padding: 5px;
+    border-radius: 5px;
+    font-size: 12px;
+    width: 250px;
+    z-index: 9999; /* Ensure the tooltip is on top */
+}
+
+.password-container:hover .password-tooltip {
+    display: block;
+}
+
+button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    width: 100%;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+.input-group {
+    position: relative;
+    margin-bottom: 1em; /* Ensure enough space for the error message */
+}
+
+.error-message {
+    display: block;
+    margin-top: 0.5em; /* Adjust the margin to position it below the input field */
+    color: red;
+    font-size: 0.875em; /* Adjust the font size as needed */
+}
+
+
+.phone-input-group {
+    display: flex;
+}
+
+#countryCode {
+    width: 70px; /* Adjust the width as needed */
+    padding: 6px; /* Adjust the padding as needed */
+    margin-right: 8px; /* Adjust the margin as needed */
+}
+
+#phoneNumber {
+    /* Take up remaining space */
+    padding: 8px; 
+    width: 260px;
+}

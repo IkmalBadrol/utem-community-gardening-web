@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="../../../styles/homepageUser.css"> <!-- Optional: Include your stylesheet -->
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <img class="header-image" src="../../../assets/images/logo.jpeg" alt="../../../assets/images/logo daun">
+            <h3>UTeM EcoHarvest</h3>
+        </div>
+        <nav class="nav-container">
+            <ul>
+                <li><a href="homepageUser.html">Home</a></li>
+                <li><a href="#allProgram">All Program</a></li>
+                <li><a href="#community">Community</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>Discover story-worthy<br> gardening moments</h1>
+        <br>
+        <div class="search-container">
+            
+            <input type="textSearchPrograms" id="searchPrograms" name="searchPrograms" placeholder="Search Programs">
+            <button type="submit" class="search-button"> Search</button>
+        </div>
+        <div>
+            <button type="button" class="signup-button" onclick="goToPage('signupuser.html')">
+                Sign Up Now <i class="fas fa-chevron-right"></i>
+            </button>
+            
+            
+        </div>
+                </div>
+              
+                
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+               
+                <p>Universiti Teknikal Malaysia Melaka,
+                     <br>76100, Hang Tuah Jaya, <br> Durian Tunggal,<br> Melaka.</p>
+
+            </div>
+           
+            <div class="footer-row">
+                <div class="footer-links">
+                    <div class="about">
+                        <h3>About</h3>
+                        <a href="#">FAQs</a>
+                    </div>
+                    <div class="community">
+                        <h3>Community</h3>
+                        <a href="#">Vlogs</a>
+                        <a href="#">Events</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-contact">
+                <h3>Ask a Question</h3>
+                <a href="#" onclick="sendMail()">Send an Email</a>
+            </div>
+            
+            
+        </div>
+    </footer>
+    
+    <script src="homepageUserJS.js"></script> <!-- Reference to the external JavaScript file -->
+
+</body>
+</html>
