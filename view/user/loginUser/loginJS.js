@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', function() {
     console.log('DOM fully loaded and parsed');
     const loginForm = document.querySelector('.login-box form');
-    loginForm.addEventListener('submit', function(event) {
+    loginForm.addEventListener('submit', function(event) {  
         event.preventDefault();
         
         console.log('Form submission triggered');
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (data.status === 'Success') {
                 console.log('Login successful, redirecting to dashboard');
                 alert('Login successful!');
-                window.location.href = '../homepage/homepageUser.html'; // Replace 'dashboard.html' with the desired page
+                window.location.href = '../homepage/homepageUser.html';
             } else {
                 console.error('Login failed:', data.message);
                 alert('Error: ' + data.message);
