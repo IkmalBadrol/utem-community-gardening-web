@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (data.status === 'Success') {
                 console.log('Login successful, redirecting to dashboard');
                 alert('Login successful!');
-                window.location.href = '../homepage/homepageUser.html'; // Replace 'dashboard.html' with the desired page
+                window.location.href = '../menuPage/menuPageUser.html'; // Replace 'dashboard.html' with the desired page
             } else {
                 console.error('Login failed:', data.message);
                 alert('Error: ' + data.message);

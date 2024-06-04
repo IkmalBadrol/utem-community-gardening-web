@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu Page</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="../../../styles/menuPageUser.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <img class="header-image" src="../../../assets/images/logo.jpeg" alt="Logo Daun">
+            <h3>UTeM EcoHarvest</h3>
+        </div>
+        <nav class="nav-container">
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#allProgram">All Program</a></li>
+                <li><a href="#community">Community</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+        </nav>
+        <div class="user-icon-container">
+            <i class="fas fa-user"></i>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <div class="slides slide1">
+                <div class="slide-content">
+                    <h1>Discover story-worthy<br>gardening moments</h1>
+                    <br>          
+                    <div class="search-container">
+                        <input type="text" id="searchPrograms" name="searchPrograms" placeholder="Search Programs">
+                        <button type="submit" class="search-button">Search</button>
+                    </div>
+                    <button class="scroll-down-button">
+                        <i class="fas fa-chevron-down"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="slides slide2">
+                <h1>Upcoming Programs</h1>
+                <div class="programs"></div>
+            </div>
+        </div>
+    </main>
+    <script src="menuPageUserJS.js"></script>
+</body>
+</html>
