@@ -1,5 +1,7 @@
 <?php
-
+header("Access-Control-Allow-Origin: *");
+header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+header("Access-Control-Allow-Headers: Content-Type, Authorization");
 include 'dbconnection.php';
 
 header('Content-Type: application/json');
@@ -13,7 +15,7 @@ $status = isset($input['status']) ? $input['status'] : 'Open';
 // Prepare the base query
 $data = "
     SELECT 
-        p.name AS program_name,
+        p.name AS name,
         p.date_time,
         p.participant_limit,
         p.total_participant,
