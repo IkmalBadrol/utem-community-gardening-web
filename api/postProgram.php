@@ -18,9 +18,9 @@ if(!isset(
 $name = $input['name'];
 $dateTime = new DateTime($input['date_time']);
 $participantLimit = $input['participant_limit'];
-$totalParticipant = $input['total_participant'];
+$totalParticipant = isset($input['total_participant']) ? $input['total_participant'] : 0;
 $location = $input['location'];
-$status = $input['status'];
+$status = isset($input['status']) ? $input['status'] : 'Open';
 
 // Format the DateTime object as a string
 $dateTimeFormatted = $dateTime->format('Y-m-d H:i:s');
@@ -40,7 +40,7 @@ $response =array(
 );
 
 if($stmt->execute()){
-    echo json_encode($response);
+    echo json_encode(['status' => 'Success','message' => 'Login successful']);
 }else{
     echo json_encode(['status'=>'error', 'message'=>'Failed to post program']);
 }

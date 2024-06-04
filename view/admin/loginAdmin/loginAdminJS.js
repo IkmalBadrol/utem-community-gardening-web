@@ -6,19 +6,19 @@ document.addEventListener('DOMContentLoaded', function() {
         
         console.log('Form submission triggered');
 
-        const matricNumber = document.getElementById('matric-number').value;
+        const staffNumber = document.getElementById('staff-number').value;
         const password = document.getElementById('password').value;
 
-        console.log('Matric Number:', matricNumber);
-        console.log('Password betul:', password);
+        console.log('Staff Number:', staffNumber);
+        console.log('Password:', password);
 
-        fetch('../../../api/loginUser.php', {
+        fetch('../../../api/loginAdmin.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                matric_number: matricNumber,
+                staff_number: staffNumber,
                 password: password,
             }),
         })
@@ -31,7 +31,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (data.status === 'Success') {
                 console.log('Login successful, redirecting to dashboard');
                 alert('Login successful!');
-                window.location.href = '../homepage/homepageUser.html'; // Replace 'dashboard.html' with the desired page
+                window.location.href = '../homePage/homePageAdmin.html'; 
             } else {
                 console.error('Login failed:', data.message);
                 alert('Error: ' + data.message);

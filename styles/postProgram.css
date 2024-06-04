@@ -8,7 +8,7 @@
 
 body {
     font-family: Arial, sans-serif;
-    background: url('../../../assets/images/background.jpg') no-repeat center center fixed;
+    background: url('../assets/images/background.jpg') no-repeat center center fixed;
     background-size: cover;
     margin: 0;
     padding-bottom: 100px; /* Add space for the footer */
@@ -88,6 +88,7 @@ main {
     padding-bottom: 100px;
 }
 
+/* AddProgram.css */
 .container {
     background-color: rgba(255, 255, 255, 0.9);
     padding: 20px;
@@ -95,27 +96,29 @@ main {
     width: 100%;
     max-width: 800px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    height: calc(100vh - 160px); /* Adjust based on your header and footer height */
-    overflow-y: auto; /* Enable scrolling */
+    margin: 50px auto; /* Adjust margin as needed */
 }
 
-.search-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.form-group {
     margin-bottom: 20px;
 }
 
-.search-container input[type="text"] {
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="text"],
+input[type="datetime-local"],
+input[type="number"],
+select {
+    width: 100%;
     padding: 10px;
-    width: calc(100% - 100px);
     border: 1px solid #ccc;
     border-radius: 5px;
 }
 
-.search-container button {
+button {
     padding: 10px 20px;
     background-color: #4CAF50;
     color: white;
@@ -124,52 +127,8 @@ main {
     cursor: pointer;
 }
 
-.programs-list-container {
-    margin-top: 20px;
-    overflow-y: auto; /* Enable scrolling */
-    flex: 1;
-}
 
-.program-item {
-    border: 1px solid #ddd;
-    padding: 20px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-    background-color: #f9f9f9;
-}
 
-.program-item h3 {
-    margin: 0;
-    font-size: 1.2em;
-}
-
-.program-item p {
-    margin: 5px 0;
-}
-
-.program-item .status {
-    color: red;
-}
-
-.pagination {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-}
-
-.pagination a {
-    padding: 10px 15px;
-    border: 1px solid #ccc;
-    margin: 0 5px;
-    text-decoration: none;
-    color: #333;
-}
-
-.pagination a.active {
-    background-color: #4CAF50;
-    color: white;
-}
 
 footer {
     background: #333;

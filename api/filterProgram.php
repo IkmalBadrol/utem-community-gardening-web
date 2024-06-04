@@ -17,7 +17,7 @@ if (!isset($input['location']) && !isset($input['date_time'])) {
 // Retrieve filters from the input
 $location = isset($input['location']) ? $input['location'] : null;
 $dateTime = isset($input['date_time']) ? new DateTime($input['date_time']) : null;
-$dateTimeFormatted = $dateTime ? $dateTime->format('Y-m-d H:i:s') : null;
+$dateTimeFormatted = $dateTime ? $dateTime->format('Y-m-d') : null; // Assuming you want to match by date only, without time
 
 // Prepare the base query
 $filterQuery = "SELECT name, date_time, participant_limit, total_participant, location, status FROM program WHERE 1=1";
@@ -29,7 +29,7 @@ if ($location) {
 
 // Add date_time filter if provided
 if ($dateTimeFormatted) {
-    $filterQuery .= " AND date_time = ?";
+    $filterQuery .= " AND DATE(date_time) = ?"; // Ensure the query checks the date part only
 }
 
 $stmt = $db->prepare($filterQuery);
