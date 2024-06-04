@@ -8,7 +8,6 @@ $input = json_decode(file_get_contents('php://input'), true);
 
 // Retrieve filters from the input
 $user_id = isset($input['user_id']) ? $input['user_id'] : null;
-$program_id = isset($input['program_id']) ? $input['program_id'] : null;
 $status = isset($input['status']) ? $input['status'] : 'Open';
 
 // Prepare the base query
@@ -38,12 +37,6 @@ $types = 's';
 if ($user_id !== null) {
     $conditions[] = "ua.user_id = ?";
     $params[] = $user_id;
-    $types .= 'i';
-}
-
-if ($program_id !== null) {
-    $conditions[] = "p.id = ?";
-    $params[] = $program_id;
     $types .= 'i';
 }
 
