@@ -22,35 +22,23 @@
             </ul>
         </nav>
     </header>
+
     <main>
         <div class="container">
+            <h2>Programs List</h2>
             <div class="search-container">
                 <input type="text" placeholder="Search...">
                 <button>Search</button>
-            </div>
-            <div class="programs-list-container" id="programs-list-container">
-                <h2>Programs List</h2>
-                <!-- Program items will be injected here by JavaScript -->
-                <div class="program-item">
-                    <h3>Program 1</h3>
-                    <p>Description of program 1</p>
+                <button id="filter-date-button">Filter </button>
+                <div id="date-filter-container" style="display: none;">
+                    <input type="date" id="filter-date-input">
+                    <button id="apply-date-filter">Apply Filter</button>
                 </div>
-                <div class="program-item">
-                    <h3>Program 2</h3>
-                    <p>Description of program 2</p>
-                </div>
-                <!-- Add more program items as needed -->
             </div>
-            <div class="pagination">
-                <a href="#">&laquo;</a>
-                <a href="#" class="active">1</a>
-                <a href="#">2</a>
-                <a href="#">3</a>
-                <a href="#">4</a>
-                <a href="#">&raquo;</a>
-            </div>
+            <div class="programs-list-container" id="programs-list-container"></div>
         </div>
     </main>
+
     <footer>
         <div class="footer-content">
             <div class="footer-logo">
@@ -75,6 +63,7 @@
             </div>
         </div>
     </footer>
+    <script src="filterProgramJS.js"></script>
     <script src="homePageAdminJS.js"></script>
 </body>
 </html>
