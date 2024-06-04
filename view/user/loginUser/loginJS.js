@@ -32,6 +32,10 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.log('Login successful, redirecting to dashboard');
                 alert('Login successful!');
 
+                sessionStorage.setItem('userId', data.User.id); 
+                const userId = sessionStorage.getItem('userId');
+                 console.log('User ID:', userId);
+
                 window.location.href = '../menuPage/menuPageUser.html'; // Replace 'dashboard.html' with the desired page
             } else {
                 console.error('Login failed:', data.message);

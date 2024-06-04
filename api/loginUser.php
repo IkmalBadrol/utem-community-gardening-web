@@ -20,7 +20,7 @@ if (!isset(
 $matricNumber = $input['matric_number'];
 $password = $input['password'];
 
-$matricNumberCheck = "SELECT * FROM user WHERE matric_number = ?";
+$matricNumberCheck = "SELECT id, name, ic_number, phone_number, email, matric_number, password FROM user WHERE matric_number = ?";
 $stmt = $db->prepare($matricNumberCheck);
 $stmt->bind_param('s', $matricNumber);
 $stmt->execute();
@@ -32,7 +32,16 @@ if ($result->num_rows > 0) {
     // Verify hashed password
     if (password_verify($password, $user['password'])) {
 
-        echo json_encode(['status' => 'Success', 'message' => 'Login successful']);
+        $userData = [
+            'id' => $user['id'],
+            'name' => $user['name'],
+            'ic_number' => $user['ic_number'],
+            'phone_number' => $user['phone_number'],
+            'email' => $user['email'],
+            'matric_number' => $user['matric_number']
+        ];
+
+        echo json_encode(['status' => 'Success', 'User' => $userData]);
     } else {
 
         echo json_encode(['status' => 'Error', 'message' => 'Incorrect password']);
