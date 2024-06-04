@@ -1,0 +1,231 @@
+@import url('https://fonts.googleapis.com/css2?family=Aclonica&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: url('../assets/images/background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    height: 100vh; /* Set height to 100vh */
+    display: flex;
+    flex-direction: column;
+}
+
+header, footer {
+    background-color: #000; /* Black color */
+    color: white;
+    padding: 5px 5px;
+    width: 100%;
+    position: fixed;
+    left: 0;
+    z-index: 1000;
+}
+
+header {
+    top: 0;
+    display: flex;
+    align-items: center;
+}
+
+    header h3 {
+        text-align: left;
+        font-family: 'Aclonica', sans-serif;
+        margin: 0; /* Remove default margin */
+        padding: 10px 0; /* Add padding as needed */
+        position: relative;
+        left: 37px;
+        z-index: 1;
+    }
+
+.header-image {
+    position: absolute;
+    left: 0; /* Position the image on the left */
+    top: 42%; /* Adjust the top position as needed */
+    transform: translateY(-50%);
+    width: 40px; /* Set the width of the image */
+    height: auto; /* Maintain aspect ratio */
+    z-index: 0; /* Ensure the image stays behind the text */
+}
+
+header nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 10px 0 0 0;
+    display: flex;
+    justify-content: center;
+}
+
+.nav-container {
+    margin-left: auto;
+    margin-right: 570px; /* Add this line */
+}
+
+header nav ul li {
+    margin: 0 15px;
+}
+
+    header nav ul li a {
+        font-family: 'manrope', sans-serif;
+        color: white;
+        text-decoration: none;
+        font-weight: lighter;
+    }
+
+        header nav ul li a:hover {
+            text-decoration: underline;
+        }
+
+main {
+    flex: 1; /* Allow main to grow and take available space */
+    overflow-y: auto; /* Add vertical scroll */
+    padding-top: 70px; /* Adjust for header height */
+    padding-bottom: 50px; /* Adjust for footer height */
+}
+
+.container {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 800px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin: 20px auto; /* Center container */
+}
+
+.search-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+    .search-container input[type="text"] {
+        padding: 10px;
+        width: calc(100% - 100px);
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    .search-container button {
+        padding: 10px 20px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+.programs-list-container {
+    margin-top: 20px;
+}
+
+.program-item {
+    border: 1px solid #ddd;
+    padding: 20px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+    .program-item h3 {
+        margin: 0;
+        font-size: 1.2em;
+    }
+
+    .program-item p {
+        margin: 5px 0;
+    }
+
+    .program-item .status {
+        color: red;
+    }
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+    .pagination a {
+        padding: 10px 15px;
+        border: 1px solid #ccc;
+        margin: 0 5px;
+        text-decoration: none;
+        color: #333;
+    }
+
+        .pagination a.active {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+footer {
+    background-color: #222; /* Darker color to match the 'Aclonica' theme */
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+.footer-content {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.footer-logo img {
+    width: 200px;
+    margin-bottom: 10px;
+}
+
+.footer-logo p {
+    text-align: left;
+    margin: 0;
+    padding: 0;
+}
+
+.footer-info, .footer-links, .footer-contact {
+    margin: 20px;
+}
+
+    .footer-links div {
+        margin-bottom: 10px;
+    }
+
+    .footer-links a {
+        color: white; /* This ensures that links are also white */
+        text-decoration: none;
+        display: block;
+        margin: 2px 0;
+    }
+
+    .footer-contact form input {
+        padding: 10px;
+        width: 100%;
+        border: none;
+        border-radius: 5px;
+        box-sizing: border-box;
+    }
+
+/* New styles to align elements in a row */
+.footer-row {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+}
+
+.footer-links {
+    display: flex;
+}
+
+    .footer-links > div {
+        margin: 0 10px;
+    }
