@@ -6,6 +6,10 @@ document.getElementById('post-program-form').addEventListener('submit', function
     const datetime = document.getElementById('datetime').value;
     const participantLimit = document.getElementById('participant-limit').value;
     const location = document.getElementById('location').value;
+    const programDetail = document.getElementById('details').value;
+
+    const adminId = sessionStorage.getItem('adminId');
+    console.log('admin id: ', adminId);
 
     // Create the data object to be sent to the PHP backend
     const programData = {
@@ -15,7 +19,9 @@ document.getElementById('post-program-form').addEventListener('submit', function
         location: location,
         // Assuming total_participant and status are not inputs in the form but default values
         total_participant: 0,
-        status: 'Open'
+        status: 'Open',
+        program_details : programDetail,
+        admin_id : adminId
     };
 
     // Send the data to the PHP backend using fetch

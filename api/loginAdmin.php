@@ -32,7 +32,15 @@ if ($result->num_rows > 0) {
     // Verify hashed password
     if (password_verify($password, $admin['password'])) {
 
-        echo json_encode(['status' => 'Success', 'message' => 'Login successful']);
+        $adminData = [
+            'id' => $admin['id'],
+            'name' => $admin['name'],
+            'ic_number' => $admin['ic_number'],
+            'phone' => $admin['phone'],
+            'staff_number' => $admin['staff_number']
+        ];
+
+        echo json_encode(['status' => 'Success', 'Admin' => $adminData]);
     } else {
 
         echo json_encode(['status' => 'Error', 'message' => 'Incorrect password']);

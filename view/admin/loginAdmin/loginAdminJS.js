@@ -29,8 +29,14 @@ document.addEventListener('DOMContentLoaded', function() {
         .then(data => {
             console.log('Data received', data);
             if (data.status === 'Success') {
+
                 console.log('Login successful, redirecting to dashboard');
                 alert('Login successful!');
+               
+                sessionStorage.setItem('adminId', data.Admin.id); 
+                const adminId = sessionStorage.getItem('adminId');
+                console.log('admin ID:', adminId);
+
                 window.location.href = '../homePage/homePageAdmin.html'; 
             } else {
                 console.error('Login failed:', data.message);
