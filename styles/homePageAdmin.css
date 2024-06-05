@@ -280,3 +280,32 @@ footer .footer-contact form input {
 .footer-links > div {
     margin: 0 10px;
 }
+
+.edit-button {
+    padding: 10px 20px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.edit-button:hover {
+    background-color: #45a049;
+}
+
+.delete-button {
+    padding: 10px 20px;
+    background-color: rgb(166, 42, 42);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.delete-button:hover {
+    background-color:rgb(166, 42, 42);
+}
+

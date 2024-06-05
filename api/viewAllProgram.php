@@ -8,7 +8,7 @@ $input = json_decode(file_get_contents('php://input'),true);
 
 //$programId = $_GET['program_id'];
 
-$data = "SELECT name, date_time, participant_limit, total_participant, location, status FROM program";
+$data = "SELECT id, program_details,name, date_time, participant_limit, total_participant, location, status FROM program";
 
 
 $stmt = $db->prepare($data);
