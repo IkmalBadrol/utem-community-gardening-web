@@ -1,7 +1,7 @@
 <?php
 $servername = "localhost"; 
 $username = "root"; 
-$password = ""; 
+$password = "abc123"; 
 $dbname = "utem_community_gardening"; 
 
 // Create connection
