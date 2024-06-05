@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Participants</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="../../../styles/viewParticipant.css"> <!-- Link to your CSS file -->
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <img class="header-image" src="../../../assets/images/logo.jpeg" alt="UTeM EcoHarvest Logo">
+            <h3>UTeM EcoHarvest</h3>
+        </div>
+        <nav class="nav-container">
+            <ul>
+                <li><a href="../homepage/homepageUser.html">Home</a></li>
+                <li><a href="../viewParticipant/viewParticipant.html">View Participants</a></li>
+                <li><a href="#community">Community</a></li>
+                <li><a href="#about">About</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="container">
+            <div class="search-container">
+                <input type="text" id="program-name-input" placeholder="Enter Program Name...">
+                <button id="fetch-button">Fetch Participants</button>
+
+            </div>
+
+            <div class="programs-list-container" id="participants-list-container">
+                <h2>Participants List</h2>
+                <!-- Program items will be injected here by JavaScript -->
+            </div>
+
+            <div class="pagination">
+                <a href="#">&laquo;</a>
+                <a href="#" class="active">1</a>
+                <a href="#">2</a>
+                <a href="#">3</a>
+                <a href="#">4</a>
+                <a href="#">&raquo;</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <p>
+                    Universiti Teknikal Malaysia Melaka,
+                    <br>76100, Hang Tuah Jaya, <br> Durian Tunggal,<br> Melaka.
+                </p>
+            </div>
+
+            <div class="footer-row">
+                <div class="footer-links">
+                    <div class="about">
+                        <h3>About</h3>
+                        <a href="#">FAQs</a>
+                    </div>
+                    <div class="community">
+                        <h3>Community</h3>
+                        <a href="#">Vlogs</a>
+                        <a href="#">Events</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-contact">
+                <h3>Ask a Question</h3>
+                <a href="#" onclick="sendMail()">Send an Email</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="viewParticipantJS.js"></script> <!-- Reference to the external JavaScript file -->
+</body>
+</html>
