@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log('Matric Number:', matricNumber);
         console.log('Password betul:', password);
 
-        fetch('../../../api/loginUser.php', {
+        fetch('http://localhost/utem-community-gardening/api/loginUser.php', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
