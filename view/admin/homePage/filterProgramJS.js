@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
             programElement.innerHTML = `
                 <h3>${program.name}</h3>
                 <p>Date: ${new Date(program.date_time).toLocaleDateString()}</p>
-                <p>Time: ${new Date(program.date_time).toLocaleTimeString()}</p>
+                <p>Time: ${new Date(program.date_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</p>
                 <p>Participants: ${program.total_participant} / ${program.participant_limit}</p>
                 <p>Location: ${program.location}</p>
                 <p>Status: ${program.status}</p>

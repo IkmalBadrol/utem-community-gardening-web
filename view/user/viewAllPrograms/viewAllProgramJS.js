@@ -1,9 +1,9 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     fetchPrograms();
 });
 
 function fetchPrograms() {
-    fetch('../../../api/viewAllProgram.php') // Update with the correct path to your PHP file
+    fetch('http://localhost/utem-community-gardening/api/viewAllProgram.php') // Update with the correct path to your PHP file
         .then(response => response.json())
         .then(data => {
             if (data.status === 'Success') {
@@ -17,7 +17,7 @@ function fetchPrograms() {
 
 function displayPrograms(programs) {
     const programsListContainer = document.getElementById('programs-list-container');
-    
+
     programs.forEach(program => {
         const programItem = document.createElement('div');
         programItem.className = 'program-item';
@@ -25,14 +25,72 @@ function displayPrograms(programs) {
         const status = program.total_participant >= program.participant_limit ? 'Closed' : 'Open';
 
         programItem.innerHTML = `
-            <h3>${program.name}</h3>
-            <p>Date: ${new Date(program.date_time).toLocaleDateString()}</p>
-            <p>Time: ${new Date(program.date_time).toLocaleTimeString()}</p>
-            <p>Participants: ${program.total_participant} / ${program.participant_limit}</p>
-            <p>Location: ${program.location}</p>
-            <p class="status">Status: ${status}</p>
+            <div class="program-details">
+                <h3>${program.name}</h3>
+                <p>Date: ${new Date(program.date_time).toLocaleDateString()}</p>
+                <p>Time: ${new Date(program.date_time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</p>
+                <p>Participants: ${program.total_participant} / ${program.participant_limit}</p>
+                <p>Location: ${program.location}</p>
+                <p>Details: ${program.program_details}</p>
+                <p class="status">Status: ${status}</p>
+            </div>
+            <button class="join-button" data-program-id="${program.id}">Join</button>
         `;
 
         programsListContainer.appendChild(programItem);
+
+        // Add event listener for the "Join" button
+        const joinButton = programItem.querySelector('.join-button');
+        joinButton.addEventListener('click', () => handleJoinProgram(program.id));
     });
+}
+
+function handleJoinProgram(programId) {
+    const userId = sessionStorage.getItem('userId'); // Retrieve the user ID from session storage
+
+    if (!userId) {
+        alert('You need to log in first to join the program.');
+        window.location.href = '../loginUser/loginUser.html'; // Redirect to login page
+        return;
+    }
+
+    fetch('http://localhost/utem-community-gardening/api/registerProgram.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            user_id: userId,
+            //user_id: 2,
+            program_id: programId,
+            register_date: new Date().toISOString().slice(0, 10), // Today's date
+            status: 'Registered', // Assuming the default status is "Registered"
+        }),
+    })
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === 'Success') {
+                alert('You have successfully joined the program!');
+                // Optionally, you can update the UI or perform other actions here
+                updateProgramStatus(programId);
+            } else {
+                alert('Failed to join the program. Please try again later.');
+                // Handle error or display a message to the user
+            }
+        })
+        .catch(error => {
+            console.error('Error joining program:', error);
+            alert('An error occurred. Please try again later.');
+        });
+}
+
+function updateProgramStatus(programId) {
+    // Find the program item and update its status to 'Registered'
+    const programItem = document.querySelector(`.join-button[data-program-id="${programId}"]`).parentNode;
+    const statusElement = programItem.querySelector('.status');
+
+    statusElement.textContent = 'Status: Registered';
+    const joinButton = programItem.querySelector('.join-button');
+    joinButton.disabled = true;
+    joinButton.textContent = 'Joined';
 }

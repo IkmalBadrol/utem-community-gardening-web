@@ -151,25 +151,6 @@ main {
     color: red;
 }
 
-.pagination {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-}
-
-.pagination a {
-    padding: 10px 15px;
-    border: 1px solid #ccc;
-    margin: 0 5px;
-    text-decoration: none;
-    color: #333;
-}
-
-.pagination a.active {
-    background-color: #4CAF50;
-    color: white;
-}
 
 footer {
     background: #333;

@@ -10,7 +10,7 @@ $input = json_decode(file_get_contents('php://input'), true);
 
 // Retrieve filters from the input
 $user_id = isset($input['user_id']) ? $input['user_id'] : null;
-$status = isset($input['status']) ? $input['status'] : 'Open';
+$status = isset($input['status']) ? $input['status'] : 'Registered';
 
 // Prepare the base query
 $data = "
@@ -20,6 +20,7 @@ $data = "
         p.participant_limit,
         p.total_participant,
         p.location,
+        p.program_details,
         p.status AS program_status,
         ua.user_id,
         ua.status 
