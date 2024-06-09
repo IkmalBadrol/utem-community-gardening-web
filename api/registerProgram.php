@@ -12,7 +12,7 @@ if (!isset(
     $input['register_date'],
     $input['status']
 )) {
-    echo json_encode(['message' => 'invalid input']);
+    echo json_encode(['message' => 'Invalid input']);
     exit();
 }
 
@@ -22,6 +22,18 @@ $registerDate = new DateTime($input['register_date']);
 $status = $input['status'];
 
 $registerDateFormatted = $registerDate->format('Y-m-d');
+
+// Check if the user is already registered for the program
+$checkRegistration = "SELECT * FROM user_activity WHERE user_id = ? AND program_id = ?";
+$checkStmt = $db->prepare($checkRegistration);
+$checkStmt->bind_param('ii', $userId, $programId);
+$checkStmt->execute();
+$checkResult = $checkStmt->get_result();
+
+if ($checkResult->num_rows > 0) {
+    echo json_encode(['status' => 'Error', 'message' => 'You are already registered for this program']);
+    exit();
+}
 
 $registerProgram = "INSERT INTO user_activity(user_id, program_id, register_date, status) VALUES (?,?,?,?)";
 
@@ -33,7 +45,7 @@ if ($stmt->execute()) {
     $updateProgram = "UPDATE program SET total_participant = total_participant + 1 WHERE id = ?";
     $updateStmt = $db->prepare($updateProgram);
     $updateStmt->bind_param('i', $programId);
-    
+
     if ($updateStmt->execute()) {
         // Fetch the updated data
         $data = "SELECT 

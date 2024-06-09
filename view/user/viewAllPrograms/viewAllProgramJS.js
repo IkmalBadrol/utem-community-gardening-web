@@ -3,7 +3,22 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function fetchPrograms() {
-    fetch('http://localhost/utem-community-gardening/api/viewAllProgram.php') // Update with the correct path to your PHP file
+    const userId = sessionStorage.getItem('userId');
+    if (!userId) {
+        alert('You need to log in first to view the programs.');
+        window.location.href = '../loginUser/loginUser.html'; // Redirect to login page
+        return;
+    }
+
+    fetch('http://localhost/utem-community-gardening/api/viewAllProgram.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            user_id: userId
+        })
+    })
         .then(response => response.json())
         .then(data => {
             if (data.status === 'Success') {
@@ -34,23 +49,26 @@ function displayPrograms(programs) {
                 <p>Details: ${program.program_details}</p>
                 <p class="status">Status: ${status}</p>
             </div>
-            <button class="join-button" data-program-id="${program.id}">Join</button>
+            <button class="join-button" data-program-id="${program.id}" ${program.is_registered ? 'disabled' : ''}>
+                ${program.is_registered ? 'Joined' : 'Join'}
+            </button>
         `;
 
         programsListContainer.appendChild(programItem);
 
-        // Add event listener for the "Join" button
-        const joinButton = programItem.querySelector('.join-button');
-        joinButton.addEventListener('click', () => handleJoinProgram(program.id));
+        if (!program.is_registered) {
+            const joinButton = programItem.querySelector('.join-button');
+            joinButton.addEventListener('click', () => handleJoinProgram(program.id));
+        }
     });
 }
 
 function handleJoinProgram(programId) {
-    const userId = sessionStorage.getItem('userId'); // Retrieve the user ID from session storage
+    const userId = sessionStorage.getItem('userId');
 
     if (!userId) {
         alert('You need to log in first to join the program.');
-        window.location.href = '../loginUser/loginUser.html'; // Redirect to login page
+        window.location.href = '../loginUser/loginUser.html';
         return;
     }
 
@@ -61,21 +79,20 @@ function handleJoinProgram(programId) {
         },
         body: JSON.stringify({
             user_id: userId,
-            //user_id: 2,
             program_id: programId,
-            register_date: new Date().toISOString().slice(0, 10), // Today's date
-            status: 'Registered', // Assuming the default status is "Registered"
+            register_date: new Date().toISOString().slice(0, 10),
+            status: 'Registered',
         }),
     })
         .then(response => response.json())
         .then(data => {
             if (data.status === 'Success') {
                 alert('You have successfully joined the program!');
-                // Optionally, you can update the UI or perform other actions here
                 updateProgramStatus(programId);
+            } else if (data.message === 'You are already registered for this program') {
+                alert(data.message);
             } else {
                 alert('Failed to join the program. Please try again later.');
-                // Handle error or display a message to the user
             }
         })
         .catch(error => {
@@ -85,7 +102,6 @@ function handleJoinProgram(programId) {
 }
 
 function updateProgramStatus(programId) {
-    // Find the program item and update its status to 'Registered'
     const programItem = document.querySelector(`.join-button[data-program-id="${programId}"]`).parentNode;
     const statusElement = programItem.querySelector('.status');
 

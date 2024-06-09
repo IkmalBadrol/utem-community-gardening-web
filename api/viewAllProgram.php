@@ -4,24 +4,46 @@ include 'dbconnection.php';
 
 header('Content-Type: application/json');
 
-$input = json_decode(file_get_contents('php://input'),true);
+$input = json_decode(file_get_contents('php://input'), true);
 
-//$programId = $_GET['program_id'];
+if (!isset($input['user_id'])) {
+    echo json_encode(['status' => 'Error', 'message' => 'User ID is required']);
+    exit();
+}
 
-$data = "SELECT id, program_details,name, date_time, participant_limit, total_participant, location, status, program_details     FROM program";
+$userId = $input['user_id'];
 
+$data = "
+    SELECT 
+        p.id,
+        p.program_details,
+        p.name,
+        p.date_time,
+        p.participant_limit,
+        p.total_participant,
+        p.location,
+        p.status,
+        COALESCE(ua.user_id, 0) AS is_registered
+    FROM 
+        program p
+    LEFT JOIN 
+        user_activity ua 
+    ON 
+        p.id = ua.program_id AND ua.user_id = ?
+";
 
 $stmt = $db->prepare($data);
+$stmt->bind_param('i', $userId);
 $stmt->execute();
 $result = $stmt->get_result();
 
-if($result->num_rows>0){
+if ($result->num_rows > 0) {
     $programs = [];
-    while($row = $result->fetch_assoc()){
+    while ($row = $result->fetch_assoc()) {
         $programs[] = $row;
     }
     echo json_encode(['status' => 'Success', 'programs' => $programs]);
-}else {
+} else {
     echo json_encode(['status' => 'Error', 'message' => 'No programs found']);
 }
 
