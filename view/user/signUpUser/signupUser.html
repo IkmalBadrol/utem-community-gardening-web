@@ -35,6 +35,7 @@
                 <div class="input-group">
                     <label for="fullName">Full Name</label>
                     <input type="text" id="fullName" name="fullName" placeholder="Full Name" required>
+                    <div class="error-message"></div>
                 </div>
                 <div class="input-group">
                     <label for="password">Password</label>
@@ -43,31 +44,21 @@
                         <i class="fas fa-info-circle password-info-icon"></i>
                         <span class="password-tooltip">Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, one number, and one special character.</span>
                     </div>
+                    <div class="error-message"></div>
                 </div>
-
-                <!-- <div class="input-group">
-                    <label for="reenterPassword">Re-enter Password</label>
-                    <div class="password-container">
-                        <input type="password" id="reenterPassword" name="reenterPassword" placeholder="Re-Enter Password" required>
-                    </div>
-                </div> -->
-
                 <div class="input-group">
                     <label for="email">Email</label>
                     <input type="email" id="email" name="email" placeholder="Email" required>
+                    <div class="error-message"></div>
                 </div>
-
-               
-                 
                 <div class="input-group">
                     <label for="phoneNumber">Phone Number</label>
                     <div class="phone-input-group">
                         <input type="text" id="countryCode" name="countryCode" placeholder="+6" readonly>
                         <input type="text" id="phoneNumber" name="phoneNumber" placeholder="Phone Number" required>
                     </div>
+                    <div class="error-message"></div>
                 </div>
-
-
                 <div class="input-group row">
                     <div class="input-group">
                         <label for="matricNumber">Matric Number</label>
@@ -76,47 +67,43 @@
                     <div class="input-group">
                         <label for="icNumber">IC Number</label>
                         <input type="text" id="icNumber" name="icNumber" placeholder="IC Number" required>
+                        <div class="error-message"></div>
                     </div>
                 </div>
                 <button type="submit">Sign Up</button>
             </form>
 
+
             <form id="staffSignUpForm" style="display: none;">
                 <h2>Staff Sign Up</h2>
-                <input type="hidden" name="role_id" value="1"> <!-- Hidden input for role_id -->
+                <input type="hidden" name="role_id" value="1">
                 <div class="input-group">
                     <label for="fullName">Full Name</label>
                     <input type="text" id="fullName" name="fullName" placeholder="Full Name" required>
+                    <div class="error-message"></div>
                 </div>
                 <div class="input-group">
                     <label for="password">Password</label>
                     <div class="password-container">
                         <input type="password" id="password" name="password" placeholder="Password" required>
                         <i class="fas fa-info-circle password-info-icon"></i>
-                        <span class="password-tooltip">Password must be at least 8 characters long, contain at least 1 uppercase and lowercase letter, 1 number, and 1 special character.</span>
+                        <span class="password-tooltip">Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, one number, and one special character.</span>
                     </div>
+                    <div class="error-message"></div>
                 </div>
-                <!-- <div class="input-group">
-                    <label for="reenterPassword">Reenter Password</label>
-                    <div class="password-container">
-                        <input type="password" id="reenterPassword" name="reenterPassword" placeholder="Re-Enter Password" required>
-                        
-                    </div>
-                </div> -->
                 <div class="input-group">
                     <label for="email">Email</label>
                     <input type="email" id="email" name="email" placeholder="Email" required>
+                    <div class="error-message"></div>
                 </div>
-
                 <div class="input-group">
                     <label for="phoneNumber">Phone Number</label>
                     <div class="phone-input-group">
                         <input type="text" id="countryCode" name="countryCode" placeholder="+6" readonly>
                         <input type="text" id="phoneNumber" name="phoneNumber" placeholder="Phone Number" required>
                     </div>
-                </div>
-
-                    
+                    <div class="error-message"></div>
+                </div>                    
                 <div class="input-group row">
                     <div class="input-group">
                         <label for="staffNumber">Staff Number</label>
@@ -125,6 +112,7 @@
                     <div class="input-group">
                         <label for="icNumber">IC Number</label>
                         <input type="text" id="icNumber" name="icNumber" placeholder="IC Number" required>
+                        <div class="error-message"></div>
                     </div>
                 </div>
                 <button type="submit">Sign Up</button>

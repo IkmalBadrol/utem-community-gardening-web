@@ -1,28 +1,9 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const studentForm = document.getElementById('studentSignUpForm');
-    const staffForm = document.getElementById('staffSignUpForm');
-    const studentBtn = document.getElementById('studentBtn');
-    const staffBtn = document.getElementById('staffBtn');
-
-    // Toggle form display based on user role
-    studentBtn.addEventListener('click', () => {
-        studentForm.style.display = 'block';
-        staffForm.style.display = 'none';
-        studentBtn.classList.add('active');
-        staffBtn.classList.remove('active');
-    });
-
-    staffBtn.addEventListener('click', () => {
-        staffForm.style.display = 'block';
-        studentForm.style.display = 'none';
-        staffBtn.classList.add('active');
-        studentBtn.classList.remove('active');
-    });
+    const adminForm = document.getElementById('adminSignUpForm');
 
     const validateForm = (form) => {
         const formData = new FormData(form);
         const namePattern = /^[A-Za-z\s]+$/;
-        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         const phonePattern = /^[0-9]{10,11}$/;
         const icPattern = /^[0-9]{12}$/;
         const passwordPattern = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
@@ -37,19 +18,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!formData.get('password') || !passwordPattern.test(formData.get('password'))) {
             errors.password = 'Password must be at least 8 characters long, contain at least one number, one uppercase letter, and one special character.';
         }
-        if (!formData.get('email') || !emailPattern.test(formData.get('email'))) {
-            errors.email = 'Valid email is required.';
-        }
         if (!formData.get('phoneNumber') || !phonePattern.test(formData.get('phoneNumber'))) {
             errors.phoneNumber = 'Valid phone number is required (10-11 digits).';
         }
         if (!formData.get('icNumber') || !icPattern.test(formData.get('icNumber'))) {
             errors.icNumber = 'IC number is required and must be exactly 12 digits.';
         }
-        if (form === studentForm && !formData.get('matricNumber')) {
-            errors.matricNumber = 'Matric number is required for students.';
-        }
-        if (form === staffForm && !formData.get('staffNumber')) {
+        if (!formData.get('staffNumber')) {
             errors.staffNumber = 'Staff number is required for staff.';
         }
 
@@ -69,7 +44,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    const registerUser = async (form) => {
+    const registerAdmin = async (form) => {
         const errors = validateForm(form);
 
         if (Object.keys(errors).length > 0) {
@@ -82,23 +57,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const data = {
             name: formData.get('fullName'),
             ic_number: formData.get('icNumber'),
-            email: formData.get('email'),
-            phone_number: formData.get('phoneNumber'),
-            password: formData.get('password')
+            phone: formData.get('phoneNumber'),
+            password: formData.get('password'),
+            staff_number: formData.get('staffNumber'),
         };
 
-        if (form === studentForm) {
-            data.matric_number = formData.get('matricNumber');
-            data.role_id = 'Student';
-        } else if (form === staffForm) {
-            data.staff_number = formData.get('staffNumber');
-            data.role_id = 'Staff';
-        }
-
-        console.log('role id : ', data.role_id);
 
         try {
-            const response = await fetch('../../../api/registerUser.php', {
+            const response = await fetch('../../../api/registerAdmin.php', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -115,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (result.status === 'Success') {
                 alert('Registration successful!');
                 // Redirect to login or another page
-                window.location.href = '../loginUser/loginUser.html';
+                window.location.href = '../loginAdmin/loginAdmin.html';
             } else {
                 alert(result.message);
             }
@@ -125,13 +91,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    studentForm.addEventListener('submit', (event) => {
+    adminForm.addEventListener('submit', (event) => {
         event.preventDefault();
-        registerUser(studentForm);
-    });
-
-    staffForm.addEventListener('submit', (event) => {
-        event.preventDefault();
-        registerUser(staffForm);
+        registerAdmin(adminForm);
     });
 });
