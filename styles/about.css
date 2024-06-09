@@ -1,0 +1,135 @@
+@import url('https://fonts.googleapis.com/css2?family=Aclonica&display=swap');
+
+body {
+    font-family: Arial, sans-serif;
+    background: url('../assets/images/background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    margin: 0;
+    padding-bottom: 100px; /* Add space for the footer */
+}
+
+header, footer {
+    background-color: black; 
+    color: white; 
+    padding: 5px;
+    width: 100%;
+    position: fixed;
+    left: 0;
+    z-index: 1000;  
+}
+
+header {
+    position: sticky;
+    top: 0;
+    display: flex;
+    align-items: center;
+}
+
+header h3 {
+    text-align: left;
+    font-family: 'Aclonica', sans-serif;
+    margin: 0;
+    padding: 10px 0;
+    position: relative;
+    left: 37px;
+    z-index: 1;
+}
+
+.header-image {
+    position: absolute;
+    left: 0;
+    top: 42%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: auto;
+    z-index: 0;
+}
+
+header nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 10px 0 0 0;
+    display: flex;
+    justify-content: center;
+}
+
+.nav-container {
+    margin-left: auto;
+    margin-right: 570px; /* Adjust based on your content */
+}
+
+header nav ul li {
+    margin: 0 15px;
+}
+
+header nav ul li a {
+    font-family: 'manrope', sans-serif; 
+    color: white; 
+    text-decoration: none;
+    font-weight: lighter;
+}
+
+header nav ul li a:hover {
+    text-decoration: underline;
+}
+
+main {
+    padding: 20px;
+}
+
+section {
+    background: #fff;
+    margin-bottom: 20px;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: #4CAF50;
+}
+
+ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+footer {
+    text-align: center;
+    padding: 10px 0;
+    background: #333;
+    color: #fff;
+}
+
+@media (min-width: 600px) {
+    main {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+}
+
+.user-icon-container i {
+    font-size: 20px;
+}
+
+/* New CSS for Highlight Boxes and Buttons */
+.highlight-box {
+    background-color: #e7f3e7;
+    padding: 10px;
+    border-left: 5px solid #4CAF50;
+    margin: 20px 0;
+}
+
+.cta-button {
+    display: inline-block;
+    padding: 10px 20px;
+    color: white;
+    background-color: #4CAF50;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.cta-button:hover {
+    background-color: #45a049;
+}

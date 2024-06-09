@@ -39,6 +39,8 @@ header h3 {
 }
 
 .header-image {
+
+
     position: absolute;
     left: 0;
     top: 42%;
@@ -131,6 +133,7 @@ header nav ul li a:hover {
 .slide2 {
     /* background: linear-gradient(454deg, #4f3080, #9553ff); */
     background: white;
+    position: relative;
 }
 
 .slide2 h1 {
@@ -247,4 +250,45 @@ button.scroll-down-button {
     display: block;
     margin-bottom: 5px;
 }
+
+
+.participant-ratio {
+    display: block;
+    margin-top: 5px;
+    color: yellowgreen; /* Adjust color as needed */
+}
+.view-all-button {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 10px 20px;
+    background-color: greenyellow;
+    border: none;
+    color: black;
+    border-radius: 20px;
+    cursor: pointer;
+    z-index: 1; /* Ensure the button is above other content */
+}
+
+.program-info .status-program {
+    display: inline-block; /* Change display to inline-block */
+    padding: 5px 10px;
+    border-radius: 10px;
+    font-weight: bold;
+    text-align: justify; /* Add text-align property */
+
+}
+
+/* Style for 'Open' status */
+.program-info .status-program.open {
+    background-color: green;
+    color: white;
+}
+
+/* Style for 'Closed' status */
+.program-info .status-program.closed {
+    background-color: red;
+    color: white;
+}
+
 

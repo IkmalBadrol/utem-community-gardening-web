@@ -23,56 +23,52 @@ function displayPrograms(programs) {
     programs.forEach(program => {
         const programCard = document.createElement('div');
         programCard.classList.add('program-card');
-
+        
         const programInfo = document.createElement('div');
         programInfo.classList.add('program-info');
-
+        
         const programName = document.createElement('topName');
         programName.classList.add('program-name');
         programName.textContent = program.name;
         programInfo.appendChild(programName);
-
+        
         const location = document.createElement('span');
         location.classList.add('location');
-        location.textContent = "Place"+program.location;
+        location.textContent = `Place: ${program.location}`; // Modified to include "Place: "
         programInfo.appendChild(location);
-
-
-        const participantLimit = document.createElement('span');
-        participantLimit.classList.add('participant-limit');
-        participantLimit.textContent = program.participant_limit;
-        programInfo.appendChild(participantLimit);
-
-
-        const totalParticipant = document.createElement('span');
-        totalParticipant.classList.add('participant-limit');
-        totalParticipant.textContent = program.total_participant;
-        programInfo.appendChild(totalParticipant);
-
+        
+        const ratio = document.createElement('span');
+        ratio.classList.add('ratio');
+        ratio.textContent = `Participant: ${program.total_participant} / ${program.participant_limit}`;
+        programInfo.appendChild(ratio);
+        
         const dateProgram = document.createElement('span');
         dateProgram.classList.add('date-time-program');
-        dateProgram.textContent = new Date(program.date_time).toLocaleDateString();
+        dateProgram.textContent = `Date: ${new Date(program.date_time).toLocaleDateString()}`;
         programInfo.appendChild(dateProgram);
-
+        
         const timeProgram = document.createElement('span');
         timeProgram.classList.add('date-time-program');
-        timeProgram.textContent = new Date(program.date_time).toLocaleTimeString();
+        timeProgram.textContent = `Time: ${new Date(program.date_time).toLocaleTimeString()}`;
         programInfo.appendChild(timeProgram);
-
-
-        const statusProgram = document.createElement('span');
-        statusProgram.classList.add('status-program');
-        statusProgram.textContent = program.status;
-        programInfo.appendChild(statusProgram);
-
+        
+    
+        
+        
         const programDetails = document.createElement('span');
         programDetails.classList.add('program-details');
         programDetails.textContent = program.program_details;
         programInfo.appendChild(programDetails);
 
+        const statusProgram = document.createElement('span');
+statusProgram.classList.add('status-program');
+statusProgram.textContent = program.status;
+statusProgram.classList.add(program.status.toLowerCase());
+programInfo.appendChild(statusProgram);
 
-
+        
         programCard.appendChild(programInfo);
         programsListContainer.appendChild(programCard);
-    });
+        });
+        
 }
