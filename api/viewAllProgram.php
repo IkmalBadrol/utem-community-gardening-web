@@ -12,6 +12,7 @@ if (!isset($input['user_id'])) {
 }
 
 $userId = $input['user_id'];
+$searchQuery = isset($input['search_query']) ? '%' . $input['search_query'] . '%' : '%';
 
 $data = "
     SELECT 
@@ -30,10 +31,12 @@ $data = "
         user_activity ua 
     ON 
         p.id = ua.program_id AND ua.user_id = ?
+    WHERE 
+        p.name LIKE ? OR p.location LIKE ? OR p.program_details LIKE ?
 ";
 
 $stmt = $db->prepare($data);
-$stmt->bind_param('i', $userId);
+$stmt->bind_param('isss', $userId, $searchQuery, $searchQuery, $searchQuery);
 $stmt->execute();
 $result = $stmt->get_result();
 

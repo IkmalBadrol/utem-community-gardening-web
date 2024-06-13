@@ -1,8 +1,26 @@
 document.addEventListener('DOMContentLoaded', function () {
     fetchPrograms();
+
+    const searchInput = document.getElementById('search-input');
+    const searchButton = document.getElementById('search-button');
+
+    if (searchInput) {
+        searchInput.addEventListener('input', function () {
+            const searchQuery = searchInput.value;
+            fetchPrograms(searchQuery);
+            displaySuggestions(searchQuery);
+        });
+    }
+
+    if (searchButton) {
+        searchButton.addEventListener('click', function () {
+            const searchQuery = searchInput.value;
+            fetchPrograms(searchQuery);
+        });
+    }
 });
 
-function fetchPrograms() {
+function fetchPrograms(searchQuery = '') {
     const userId = sessionStorage.getItem('userId');
     if (!userId) {
         alert('You need to log in first to view the programs.');
@@ -16,22 +34,24 @@ function fetchPrograms() {
             'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-            user_id: userId
+            user_id: userId,
+            search_query: searchQuery // Include search query in the request
         })
     })
-        .then(response => response.json())
-        .then(data => {
-            if (data.status === 'Success') {
-                displayPrograms(data.programs);
-            } else {
-                console.error('No programs found');
-            }
-        })
-        .catch(error => console.error('Error fetching programs:', error));
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'Success') {
+            displayPrograms(data.programs);
+        } else {
+            console.error('No programs found');
+        }
+    })
+    .catch(error => console.error('Error fetching programs:', error));
 }
 
 function displayPrograms(programs) {
     const programsListContainer = document.getElementById('programs-list-container');
+    programsListContainer.innerHTML = ''; // Clear previous results
 
     programs.forEach(program => {
         const programItem = document.createElement('div');
@@ -49,18 +69,72 @@ function displayPrograms(programs) {
                 <p>Details: ${program.program_details}</p>
                 <p class="status">Status: ${status}</p>
             </div>
-            <button class="join-button" data-program-id="${program.id}" ${program.is_registered ? 'disabled' : ''}>
-                ${program.is_registered ? 'Joined' : 'Join'}
-            </button>
         `;
 
-        programsListContainer.appendChild(programItem);
+        if (status === 'Open' && !program.is_registered) {
+            const joinButton = document.createElement('button');
+            joinButton.className = 'join-button';
+            joinButton.textContent = 'Join';
+            joinButton.dataset.programId = program.id;
 
-        if (!program.is_registered) {
-            const joinButton = programItem.querySelector('.join-button');
             joinButton.addEventListener('click', () => handleJoinProgram(program.id));
+            programItem.appendChild(joinButton);
+        } else if (program.is_registered) {
+            const joinButton = document.createElement('button');
+            joinButton.className = 'join-button';
+            joinButton.textContent = 'Joined';
+            joinButton.disabled = true;
+            programItem.appendChild(joinButton);
         }
+
+        programsListContainer.appendChild(programItem);
     });
+}
+
+function displaySuggestions(searchQuery) {
+    const suggestionsContainer = document.getElementById('suggestions-container');
+    suggestionsContainer.innerHTML = ''; // Clear previous suggestions
+
+    if (searchQuery.trim() === '') {
+        return; // No need to show suggestions if the search query is empty
+    }
+
+    fetch('http://localhost/utem-community-gardening/api/viewAllProgram.php', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            user_id: sessionStorage.getItem('userId'),
+            search_query: searchQuery // Include search query in the request
+        })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'Success') {
+            const suggestions = data.programs
+                .filter(program => program.name.toLowerCase().includes(searchQuery.toLowerCase()))
+                .slice(0, 5); // Show only the first 5 suggestions
+
+            suggestions.forEach(suggestion => {
+                const suggestionItem = document.createElement('div');
+                suggestionItem.className = 'suggestion-item';
+                suggestionItem.textContent = suggestion.name;
+
+                suggestionItem.addEventListener('click', () => {
+                    const searchInput = document.getElementById('search-input');
+                    searchInput.value = suggestion.name;
+                    fetchPrograms(suggestion.name);
+                    suggestionsContainer.innerHTML = ''; // Clear suggestions after selection
+                });
+
+                suggestionsContainer.appendChild(suggestionItem);
+            });
+        } else {
+            console.error('No programs found');
+        }
+    })
+    .catch(error => console.error('Error fetching suggestions:', error));
 }
 
 function handleJoinProgram(programId) {
@@ -84,21 +158,21 @@ function handleJoinProgram(programId) {
             status: 'Registered',
         }),
     })
-        .then(response => response.json())
-        .then(data => {
-            if (data.status === 'Success') {
-                alert('You have successfully joined the program!');
-                updateProgramStatus(programId);
-            } else if (data.message === 'You are already registered for this program') {
-                alert(data.message);
-            } else {
-                alert('Failed to join the program. Please try again later.');
-            }
-        })
-        .catch(error => {
-            console.error('Error joining program:', error);
-            alert('An error occurred. Please try again later.');
-        });
+    .then(response => response.json())
+    .then(data => {
+        if (data.status === 'Success') {
+            alert('You have successfully joined the program!');
+            updateProgramStatus(programId);
+        } else if (data.message === 'You are already registered for this program') {
+            alert(data.message);
+        } else {
+            alert('Failed to join the program. Please try again later.');
+        }
+    })
+    .catch(error => {
+        console.error('Error joining program:', error);
+        alert('An error occurred. Please try again later.');
+    });
 }
 
 function updateProgramStatus(programId) {
