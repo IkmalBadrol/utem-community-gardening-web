@@ -17,7 +17,9 @@ $data = "
         u.id AS user_id,
         u.name AS studentName,
         u.email,
+		u.phone_number,
         u.matric_number,
+		u.ic_number,
         ua.register_date,
         ua.status
     FROM 

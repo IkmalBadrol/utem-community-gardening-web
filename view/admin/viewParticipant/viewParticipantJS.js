@@ -81,6 +81,14 @@ function displayParticipants(participants) {
         emailCell.textContent = participant.email;
         participantRow.appendChild(emailCell);
 
+        const phoneNumber = document.createElement('td');
+        phoneNumber.textContent = participant.phone_number;
+        participantRow.appendChild(phoneNumber);
+
+        const icNumber = document.createElement('td');
+        icNumber.textContent = participant.ic_number;
+        participantRow.appendChild(icNumber);
+
         const matricNumberCell = document.createElement('td');
         matricNumberCell.textContent = participant.matric_number;
         participantRow.appendChild(matricNumberCell);
