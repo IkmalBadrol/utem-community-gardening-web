@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function fetchPrograms() {
-    fetch('../../../api/viewAllProgram.php') // Update with the correct path to your PHP file
+    fetch('../../../api/viewAllProgramAdmin.php') 
         .then(response => response.json())
         .then(data => {
             if (data.status === 'Success') {
@@ -16,8 +16,7 @@ function fetchPrograms() {
 }
 function displayPrograms(programs) {
     const programsListContainer = document.getElementById('programs-list-container');
-    programsListContainer.innerHTML = ''; // Clear previous content
-
+    programsListContainer.innerHTML = ''; 
     programs.forEach(program => {
         const programItem = document.createElement('div');
         programItem.className = 'program-item';
@@ -35,7 +34,6 @@ function displayPrograms(programs) {
             <p class="status">Status: ${status}</p>
             <button class="edit-button" onclick="editProgram(${program.id})">Edit</button> 
             <button class="delete-button" onclick="deleteProgram(${program.id})">Delete</button>
-
         `;
 
         programsListContainer.appendChild(programItem);

@@ -28,7 +28,7 @@ function fetchPrograms(searchQuery = '') {
         return;
     }
 
-    fetch('http://localhost/utem-community-gardening/api/viewAllProgram.php', {
+    fetch('../../../api/viewAllProgram.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -146,7 +146,7 @@ function handleJoinProgram(programId) {
         return;
     }
 
-    fetch('http://localhost/utem-community-gardening/api/registerProgram.php', {
+    fetch('../../../api/registerProgram.php', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

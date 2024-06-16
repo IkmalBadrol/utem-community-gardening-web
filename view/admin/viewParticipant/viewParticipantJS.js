@@ -14,7 +14,7 @@ document.addEventListener('DOMContentLoaded', function () {
 let participantsData = []; // Store the fetched participants data
 
 function fetchParticipantsByProgramName(programName) {
-    fetch(`http://localhost/utem-community-gardening/api/viewParticipant.php?program_name=${encodeURIComponent(programName)}`)
+    fetch(`../../../api/viewParticipant.php?program_name=${encodeURIComponent(programName)}`)
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
