@@ -1,20 +1,54 @@
 document.addEventListener('DOMContentLoaded', function () {
-    const fetchButton = document.getElementById('fetch-button');
-    fetchButton.addEventListener('click', function () {
-        const programName = document.getElementById('program-name-input').value;
-        console.log('User Program Name:', programName);
-        if (programName) {
-            fetchParticipantsByProgramName(programName);
-        } else {
-            console.error('Program name not provided by user');
-        }
+    const programId = localStorage.getItem('program_id');
+    if (programId) {
+        fetchProgramDetails(programId); // Fetch program details including program_name
+        fetchParticipantsByProgramId(programId);
+    } else {
+        console.error('No program ID found in local storage');
+    }
+
+    const searchInput = document.getElementById('search-input');
+    const searchButton = document.getElementById('search-button'); // Get the search button element
+
+    searchButton.addEventListener('click', function () {
+        const query = searchInput.value.toLowerCase();
+        handleSearchInput(query); // Handle search input
+    });
+
+    // Print button functionality
+    const printButton = document.getElementById('print-button');
+    printButton.addEventListener('click', function () {
+        window.print();
     });
 });
 
+function fetchProgramDetails(programId) {
+    fetch(`http://localhost/utem-community-gardening/api/getProgramNameforViewParticipant.php?program_id=${encodeURIComponent(programId)}`)
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            if (data.status === 'Success') {
+                displayProgramName(data.program_name);
+            } else {
+                console.error('Failed to fetch program details:', data.message);
+            }
+        })
+        .catch(error => console.error('Error fetching program details:', error));
+}
+
+function displayProgramName(programName) {
+    const programNameElement = document.getElementById('program-name');
+    programNameElement.textContent = programName;
+}
+
 let participantsData = []; // Store the fetched participants data
 
-function fetchParticipantsByProgramName(programName) {
-    fetch(`../../../api/viewParticipant.php?program_name=${encodeURIComponent(programName)}`)
+function fetchParticipantsByProgramId(programId) {
+    fetch(`http://localhost/utem-community-gardening/api/viewParticipant.php?program_id=${encodeURIComponent(programId)}`)
         .then(response => {
             if (!response.ok) {
                 throw new Error('Network response was not ok');
@@ -33,26 +67,37 @@ function fetchParticipantsByProgramName(programName) {
 }
 
 function displayParticipants(participants) {
-    const participantsListContainer = document.getElementById('participants-list-container');
-    participantsListContainer.innerHTML = '<h2>Participants List</h2>'; // Keep the title
+    const participantsTableBody = document.querySelector('#participants-table tbody');
+    participantsTableBody.innerHTML = ''; // Clear existing rows
 
     participants.forEach(participant => {
-        const participantItem = document.createElement('div');
-        participantItem.className = 'participant-item';
+        const participantRow = document.createElement('tr');
 
-        participantItem.innerHTML = `
-            <h3>${participant.studentName}</h3>
-            <p>Email: ${participant.email}</p>
-            <p>Matric Number: ${participant.matric_number}</p>
-            <p>Register Date: ${new Date(participant.register_date).toLocaleDateString()}</p>
-            <p>Status: ${participant.status}</p>
-        `;
+        const studentNameCell = document.createElement('td');
+        studentNameCell.textContent = participant.studentName;
+        participantRow.appendChild(studentNameCell);
 
-        participantsListContainer.appendChild(participantItem);
+        const emailCell = document.createElement('td');
+        emailCell.textContent = participant.email;
+        participantRow.appendChild(emailCell);
+
+        const matricNumberCell = document.createElement('td');
+        matricNumberCell.textContent = participant.matric_number;
+        participantRow.appendChild(matricNumberCell);
+
+        const registerDateCell = document.createElement('td');
+        registerDateCell.textContent = new Date(participant.register_date).toLocaleDateString();
+        participantRow.appendChild(registerDateCell);
+
+        const statusCell = document.createElement('td');
+        statusCell.textContent = participant.status;
+        participantRow.appendChild(statusCell);
+
+        participantsTableBody.appendChild(participantRow);
     });
 }
 
-function searchParticipants(query) {
+function handleSearchInput(query) {
     const filteredParticipants = participantsData.filter(participant => {
         return participant.studentName.toLowerCase().includes(query) ||
             participant.email.toLowerCase().includes(query) ||

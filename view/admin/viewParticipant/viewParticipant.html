@@ -3,9 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>View Participants</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-    <link rel="stylesheet" href="../../../styles/viewParticipant.css"> <!-- Link to your CSS file -->
+    <title>Participant List</title>
+    <link rel="stylesheet" href="../../../styles/viewParticipant.css"> 
 </head>
 <body>
     <header>
@@ -24,27 +23,32 @@
     <main>
         <div class="container">
             <div class="search-container">
-                <input type="text" id="program-name-input" placeholder="Enter Program Name...">
-                <button id="fetch-button">Search</button>
-
+                <input type="text" id="search-input" placeholder="Search participants...">
+                <button id="search-button">Search</button>
             </div>
+            
+            
+            <h2 id="program-name"></h2> 
 
-            <div class="programs-list-container" id="participants-list-container">
-                <h2>Participants List</h2>
-                <!-- Program items will be injected here by JavaScript -->
+            <div class="participants-list-container">
+                <table id="participants-table">
+                    <thead>
+                        <tr>
+                            <th>Student Name</th>
+                            <th>Email</th>
+                            <th>Matric Number</th>
+                            <th>Register Date</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Participant rows will be injected here by JavaScript -->
+                    </tbody>
+                </table>
             </div>
-
-            <div class="pagination">
-                <a href="#">&laquo;</a>
-                <a href="#" class="active">1</a>
-                <a href="#">2</a>
-                <a href="#">3</a>
-                <a href="#">4</a>
-                <a href="#">&raquo;</a>
-            </div>
+            <button id="print-button">Print</button>
         </div>
     </main>
-
     <footer>
         <div class="footer-content">
             <div class="footer-logo">
@@ -53,7 +57,6 @@
                     <br>76100, Hang Tuah Jaya, <br> Durian Tunggal,<br> Melaka.
                 </p>
             </div>
-
             <div class="footer-row">
                 <div class="footer-links">
                     <div class="about">
@@ -73,7 +76,6 @@
             </div>
         </div>
     </footer>
-
     <script src="viewParticipantJS.js"></script> <!-- Reference to the external JavaScript file -->
 </body>
 </html>
